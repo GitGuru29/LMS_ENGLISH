@@ -1,0 +1,9 @@
+# Fly.io Ignore
+node_modules/
+.env
+*.db
+*.db-journal
+secure_storage/
+.git/
+.vscode/
+npm-debug.log
