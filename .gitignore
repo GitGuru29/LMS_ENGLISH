@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.db
+*.db-journal
+secure_storage/
+backend/secure_storage/
+frontend/dist/
+frontend/build/
+.DS_Store
+npm-debug.log
+.vscode/
+*.log

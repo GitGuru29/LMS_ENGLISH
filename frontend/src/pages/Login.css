@@ -1,0 +1,280 @@
+/* Login Wrapper - Full Screen Background */
+.login-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    /* Removed z-index to avoid stacking context traps */
+}
+
+/* 1. Fallback Gradient (Bottom Layer) */
+.login-bg-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    /* Deep Blue */
+    z-index: 0;
+}
+
+/* 2. Background Image (Middle Layer) */
+.login-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 1;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
+
+/* Better positioning for mobile portrait screens */
+@media (max-width: 768px) {
+    .login-bg-image {
+        object-position: center 40%;
+    }
+}
+
+/* JS handles fading out old images, but new ones should default visible */
+.login-bg-image.loading {
+    opacity: 0;
+}
+
+/* 3. Dark Overlay (Top Layer) */
+.login-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: none;
+    z-index: 2;
+}
+
+/* 4. Centered Card (Content Layer) */
+.login-card {
+    position: relative;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    width: 90%;
+    max-width: 440px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: slideUp 0.5s ease-out;
+    backdrop-filter: none;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Brand Header */
+.brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.brand-icon {
+    color: #1a1a2e;
+    /* Dark Blue */
+    margin-bottom: 12px;
+}
+
+.brand-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Welcome Text */
+.welcome-text {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 32px;
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Form Styles */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    font-size: 16px;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.25);
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    font-weight: 600;
+}
+
+.input-group input:focus {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.input-group input::placeholder {
+    color: #000;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    /* Primary Blue */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 8px;
+}
+
+.login-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.login-btn:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+}
+
+/* Links */
+.login-links {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #6b7280;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-links a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+.dot {
+    color: #9ca3af;
+}
+
+/* Error Message */
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 24px;
+    }
+
+    .welcome-text {
+        font-size: 24px;
+    }
+}
+
+/* Login Footer */
+.login-footer {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.login-footer p {
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.login-footer .version {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Footer Adjustments */
+@media (max-width: 480px) {
+    .login-footer {
+        flex-direction: column;
+        gap: 8px;
+        bottom: 20px;
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .login-footer p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .login-footer .version {
+        font-size: 10px;
+        padding: 3px 10px;
+    }
+}

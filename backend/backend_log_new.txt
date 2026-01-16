@@ -1,0 +1,20 @@
+
+> backend@1.0.0 dev
+> nodemon server.js
+
+[33m[nodemon] 3.1.11[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,mjs,cjs,json[39m
+[32m[nodemon] starting `node server.js`[39m
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Server running on http://localhost:8000
+Connected to SQLite database.
+Proxy Error: Request failed with status code 401
+Proxy Error: Request failed with status code 401
+Proxy Error: Request failed with status code 401
+Proxy Error: Request failed with status code 401
+Proxy Error: Request failed with status code 401
+Proxy Error: Request failed with status code 401
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] restarting child process[39m
